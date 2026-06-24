@@ -9,7 +9,6 @@ import io.savioromario10.hr_payroll.entity.Worker;
 
 @FeignClient(
   name = "hr-worker", 
-  url="http://localhost:8001", 
   path = "/workers")
 public interface WorkerFeignClients {
 
