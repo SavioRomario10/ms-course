@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
 import io.savioromario10.hr_payroll.service.PaymentService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.savioromario10.hr_payroll.entity.Payment;
 
 @RestController
@@ -18,8 +19,14 @@ public class PaymentController {
   @Autowired
   private PaymentService service;
 
+  @CircuitBreaker(name = "payment", fallbackMethod = "getPaymentFallback")
   @GetMapping("/{workerId}/days/{days}")
   public ResponseEntity<Payment> getPayment(@PathVariable long workerId, @PathVariable int days){
     return ResponseEntity.ok(service.getPayment(workerId, days));
+  }
+
+  public ResponseEntity<Payment> getPaymentFallback(long workerId, int days, RuntimeException exception){
+    Payment payment = new Payment("Unexpected error", 0.0, days);
+    return ResponseEntity.ok(payment);
   }
 }

@@ -3,6 +3,7 @@ package io.savioromario10.hr_payroll;
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.cloud.openfeign.FeignClient;
+
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
