@@ -32,6 +32,9 @@ spring:
             - Path=/hr-oauth/**
           filters:
             - StripPrefix=1
+            - RemoveRequestHeader=Cookie
+            - RemoveResponseHeader=Set-Cookie
+
 
 server:
   port: 8765
