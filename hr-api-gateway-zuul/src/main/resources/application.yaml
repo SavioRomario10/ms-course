@@ -26,6 +26,13 @@ spring:
           filters:
             - StripPrefix=1
 
+        - id: oauth
+          uri: lb://HR-OAUTH
+          predicates:
+            - Path=/hr-oauth/**
+          filters:
+            - StripPrefix=1
+
 server:
   port: 8765
 
