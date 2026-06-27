@@ -19,6 +19,13 @@ spring:
           filters:
             - StripPrefix=1
 
+        - id: user
+          uri: lb://HR-USER
+          predicates:
+            - Path=/hr-user/**
+          filters:
+            - StripPrefix=1
+
 server:
   port: 8765
 
